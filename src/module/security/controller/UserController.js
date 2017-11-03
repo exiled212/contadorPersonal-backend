@@ -1,19 +1,21 @@
-module.exports = {
+(()=>{
+	require('rootpath')();
+	const path = require('path');
+	const User = require(path.join('src','module','security','model','User.js'));
+	
+	module.exports = {
+		create(req, res){
 
+			let httpResult = {};
+			let data = req.body;
 
-	create(req, res){
+			console.log(data);
 
-		let httpResult = {};
-		let data = req.body;
+			httpResult.status= 'success';
+			httpResult.code= 200;
+			httpResult.data= {message:'hola'};
 
-		console.log(data);
-
-		httpResult.status= 'success';
-		httpResult.code= 200;
-		httpResult.data= {message:'hola'};
-
-		res.status(200).send(httpResult);
+			res.status(200).send(httpResult);
+		}
 	}
-
-
-}
+})();
