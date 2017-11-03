@@ -1,0 +1,27 @@
+{
+  "name": "cpback",
+  "version": "1.0.0",
+  "description": "BAckend de contador personal",
+  "main": "bin/www.js",
+  "scripts": {
+    "start": "node ./src/bin/www.js",
+    "test": "nodemon ./src/bin/www.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exiled212/contadorPersonal-backend.git"
+  },
+  "author": "Daniel Ruiz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/exiled212/contadorPersonal-backend/issues"
+  },
+  "homepage": "https://github.com/exiled212/contadorPersonal-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "method-override": "^2.3.10",
+    "path": "^0.12.7",
+    "rootpath": "^0.1.2"
+  }
+}
