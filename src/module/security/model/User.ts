@@ -3,33 +3,55 @@ import { Model } from "./../../Model";
 (()=>{
 	
 	require('rootpath')();
+	const md5: any = require('md5');
 	const path: any = require('path');
 
 	class User extends Model {
-		Model: any;
-		constructor(){
+
+		constructor(data){
 			super();
+			this.data = data;
 			this.Model = this.db.define('user', {
 				name: {
 					type: this.Sequelize.STRING,
-					allowNull: false,
-					unique: false
+					unique: false,
+					validate:{
+						notNull: this._notNull,
+						isAlpha:	{ msg:"Solo puede ingresar letras" },
+					}
 				},
 				email: {
 					type: this.Sequelize.STRING,
-					allowNull: false,
-					unique: true
+					unique: { msg: "El correo ya se encuentra registrado." },
+					validate:{
+						notNull: this._notNull,
+						isEmail:	{ msg:"Debe ingresar un Correo Electronico." },
+					}
 				},
 				password: {
 					type: this.Sequelize.STRING,
-					allowNull: false,
-					unique: false
+					unique: false,
+					validate:{
+						notNull: this._notNull,
+						md5(){
+							this.password = md5(`password:${this.password}|email:${this.email}`)
+						}
+					}
 				}
 			});
 		}
 
-		create(data): any{
-			return this.Model.create(data)
+		private _notNull(value){
+			if(value == null || value == undefined || value == ''){
+				throw new Error('Este campo es obligatorio.');
+			}
+		}
+
+		save(): any{
+			return this.Model.sync({force:false})
+				.then(()=>{
+					return this.Model.create(this.data)
+				})
 		}
 
 		updateTable(): any{

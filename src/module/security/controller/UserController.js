@@ -9,7 +9,19 @@
 			let httpResult = {};
 			let data = req.body;
 
-			console.log(data);
+			let user = new User(data);
+
+			user.save()
+				.then(result=>{
+					console.log('a');
+				})
+				.catch(error=>{
+					console.log('b');
+					error.errors.map(error=>{
+						let message = `Error: ${error.message} - campo: ${error.path} - valor: ${error.value}`;
+						console.log(message);
+					})
+				})
 
 			httpResult.status= 'success';
 			httpResult.code= 200;

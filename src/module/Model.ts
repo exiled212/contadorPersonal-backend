@@ -6,6 +6,8 @@ const dbPath: string = path.join("src", "db.sqlite");
 export class Model {
 	db;
 	Sequelize;
+	Model: any;
+	data: {};
 	constructor() {
 		let sequelize: any = new Sequelize("contador_personal", '','', {
 			dialect: "sqlite",
