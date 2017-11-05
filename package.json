@@ -19,6 +19,7 @@
   "homepage": "https://github.com/exiled212/contadorPersonal-backend#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
     "method-override": "^2.3.10",
     "node-pre-gyp": "^0.6.39",
